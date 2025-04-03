@@ -97,6 +97,12 @@ jobs:
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
+        #Downgrade Xray to 1.6.0, this is only for SSR Plus build due to low on nand flash free space
+        cat feeds/packages/net/xray-core/Makefile
+        sed -i 's/25.3.6/1.6.0/g' feeds/packages/net/xray-core/Makefile
+        sed -i 's/d62305348deff713767fe1b3c23538e3f8bfe0c96d092f1f95f48c17bc2f5943/b65375090a2d48d358a582837d485bfaa9572e4d1f5a649895b9fd83d0f69e43/g' feeds/packages/net/xray-core/Makefile
+
+
 
     - name: Compile the firmware
       id: compile
